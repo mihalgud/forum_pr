@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <h1>Вы вышли</h1>
+    <small class="text-muted">
+        Хотите вернуться?   <a href="{% url 'login' %}">Войти</a>
+    </small>
+    <br>
+    <br>
+    <a class="btn btn-primary" href="{% url 'index' %}">На главную</a>
+{% endblock %}

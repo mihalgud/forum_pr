@@ -1,12 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Форум</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{% url 'index' %}">Домой</a>
-            <a class="nav-item nav-link" href="{% url 'about' %}">О нас</a>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Форум</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{% url 'index' %}">Домой</a>
+                <a class="nav-item nav-link" href="{% url 'about' %}">О нас</a>
+            </div>
         </div>
-    </div>
+        <div class="navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <p style="color:rgba(255, 255, 255, 0.42)">{{ user.username }}</p>
+                <br>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
+            {% else %}
+                <a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
+                <a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
+            {% endif %}
+        </div>
+    </div> 
 </nav>
