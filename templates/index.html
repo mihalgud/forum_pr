@@ -15,7 +15,22 @@
     <div class="container"> 
         {% block content %}
             <h1>Форум</h1>
-            <a href="{% url 'create_post' %}" class="btn btn-primary">Создать пост</a>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <a href="{% url 'create_post' %}" class="btn btn-primary">Создать пост</a>
+                {% endif %}
             <table class="table">
                 <thead>
                     <tr>
