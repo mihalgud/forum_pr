@@ -12,8 +12,7 @@
         </div>
         <div class="navbar-nav navbar-right">
             {% if user.is_authenticated %}
-                <p style="color:rgba(255, 255, 255, 0.42)">{{ user.username }}</p>
-                <br>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">{{ user.username }}</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
             {% else %}
                 <a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
