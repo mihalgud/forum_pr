@@ -3,10 +3,19 @@
 
 {% block content %}
     <h1>О нас</h1>
+    <hr>
+    <h4>Отправить сообщение</h4>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
         <br>
-        <button class="btn btn-primary">Добавить</button>
+        <button class="btn btn-primary">Отправить</button>
     </form>
 {% endblock %}
