@@ -1,5 +1,12 @@
 {% extends 'index.html' %}
+{% load crispy_forms_tags %}
+
 {% block content %}
     <h1>О нас</h1>
-    <p>{{ user.username }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button class="btn btn-primary">Добавить</button>
+    </form>
 {% endblock %}
