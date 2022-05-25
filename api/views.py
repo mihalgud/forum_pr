@@ -2,7 +2,7 @@
 
 from rest_framework import viewsets
 from api.models import Checkbox
-from api.serializers import CheckboxSerializer, UserSerializer
+from api.serializers import CheckboxSerializer, DataSerializer, DataSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from rest_framework import authentication, permissions
 from rest_framework import generics, mixins
+from api.utils import Sum
 
 class Checkboxlist(generics.ListCreateAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
     # authentication_classes=[authentication.TokenAuthentication]
@@ -44,9 +45,9 @@ class Checkboxlist(generics.ListCreateAPIView, mixins.ListModelMixin, mixins.Cre
 
 
 
-# class CheckboxViewSet(viewsets.ModelViewSet):
-    # queryset=Checkbox.objects.all()
-    # serializer_class=CheckboxSerializer
+class CheckboxViewSet(viewsets.ModelViewSet):
+    queryset=Checkbox.objects.all()
+    serializer_class=CheckboxSerializer
 
 @api_view(['GET'])
 def checkbox_list(req):
@@ -88,3 +89,13 @@ def checkbox_delete(req, pk):
     checkbox.delete()
     # serializer=CheckboxSerializer(checkbox, data=req.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+class DateView(APIView):
+
+    @staticmethod
+    def get(req):
+        serializer=DataSerializer(data=req.query_params)
+        serializer.is_valid(raise_exception=True)
+        result=Sum(serializer.validated_data).call()
+        return Response(result, status=status.HTTP_200_OK)
+
