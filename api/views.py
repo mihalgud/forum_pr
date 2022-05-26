@@ -1,5 +1,6 @@
 # from django.shortcuts import render
 
+import logging
 from rest_framework import viewsets
 from api.models import Checkbox
 from api.serializers import CheckboxSerializer, DataSerializer, DataSerializer
@@ -11,6 +12,8 @@ from django.contrib.auth.models import User
 from rest_framework import authentication, permissions
 from rest_framework import generics, mixins
 from api.utils import Sum
+
+logger=logging.getLogger('django')
 
 class Checkboxlist(generics.ListCreateAPIView, mixins.ListModelMixin, mixins.CreateModelMixin):
     # authentication_classes=[authentication.TokenAuthentication]
@@ -51,6 +54,7 @@ class CheckboxViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def limit(self, req, pk=None):
         params=req.query_params
+        logger.info(f'params:{params}')
         return Response({'result': params})
 
 @api_view(['GET'])
