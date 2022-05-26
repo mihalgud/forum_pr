@@ -3,7 +3,7 @@
 from rest_framework import viewsets
 from api.models import Checkbox
 from api.serializers import CheckboxSerializer, DataSerializer, DataSerializer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -48,6 +48,10 @@ class Checkboxlist(generics.ListCreateAPIView, mixins.ListModelMixin, mixins.Cre
 class CheckboxViewSet(viewsets.ModelViewSet):
     queryset=Checkbox.objects.all()
     serializer_class=CheckboxSerializer
+    @action(detail=False, methods=['get'])
+    def limit(self, req, pk=None):
+        params=req.query_params
+        return Response({'result': params})
 
 @api_view(['GET'])
 def checkbox_list(req):

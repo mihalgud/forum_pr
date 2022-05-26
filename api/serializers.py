@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 
 class CheckboxSerializer(serializers.ModelSerializer):
     
-    title=serializers.SerializerMethodField()
+    # title=serializers.SerializerMethodField()
     class Meta:
         model=Checkbox
-        fields=['name', 'is_checked', 'title']
+        fields='__all__'
 
-    @staticmethod
-    def get_title(obj):
-        return obj.name
+    # @staticmethod
+    # def get_title(obj):
+    #     return obj.name
 
 # class UserSerializer(serializers.ModelSerializer):
 #     class Meta:

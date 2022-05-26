@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'crispy_forms',
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
