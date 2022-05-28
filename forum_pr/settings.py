@@ -140,10 +140,10 @@ EMAIL_HOST_USER="tt394650@gmail.com"
 EMAIL_HOST_PASSWORD="Qwerty_123"
 EMAIL_USE_TLS=True
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 2
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 2
+# }
 
 LOGGING={
     'version': 1,
