@@ -50,8 +50,10 @@
                                 <td><a href="{% url 'detail_post' post.pk %}">{{ post.title }}</a></td>
                                 <td>{{ post.description }}</td>
                                 <th scope="row">{{ post.created_at }}</th>
-                                <td><a href="{% url 'update_post' post.pk %}" class="btn btn-info">Изменить</a></td>
-                                <td><a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Удалить</a></td>
+                                {% if user.is_staff %}
+                                    <td><a href="{% url 'update_post' post.pk %}" class="btn btn-info">Изменить</a></td>
+                                    <td><a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Удалить</a></td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                     {% else %}

@@ -11,8 +11,10 @@
         <img src="{{ post.image.url }}">
     {% endif %}
     <hr>
-    <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Изменить</a>
-    <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Удалить</a>
+    {% if user.is_staff %}
+        <a href="{% url 'update_post' post.pk %}" class="btn btn-info">Изменить</a>
+        <a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Удалить</a>
+    {% endif %}
     <a href="{% url 'add_comment' post.pk %}" class="btn btn-primary">Добавить комментарий</a>
     <hr>
     {% if post.comments.all %}
